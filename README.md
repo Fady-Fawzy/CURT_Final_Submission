@@ -65,7 +65,7 @@ python -m venv .venv
 python -m pip install -r requirements.txt
 ```
 
-If PowerShell blocks activation, open a new terminal or use the virtual environment's Python directly with `\.venv\Scripts\python.exe -m ...`.
+If PowerShell blocks activation, open a new terminal or use the virtual environment's Python directly with `.\.venv\Scripts\python.exe -m ...`.
 
 ## Environment Variables
 
@@ -183,3 +183,9 @@ The tests cover database access, Phase 1 answers and edge cases, Gemini client c
 
 See [REFLECTION.md](REFLECTION.md) for the short project reflection.
 
+
+## Engineering verification and boundaries
+
+CI installs the dependencies, checks Python syntax with Ruff, and runs the existing unittest suite with provider requests mocked. It uses Python 3.12 and requires no real API key. Run `python -m pip install -r requirements-dev.txt`, `python -m ruff check .`, and `python -m unittest discover -s tests -v` locally.
+
+The three inventory tools are an explicit allowlist; the model cannot issue arbitrary SQL. SQL remains in the data-access layer. Sessions are in-memory and are not authenticated user identities. The prototype does not provide rate limiting, durable chat storage, or a demonstrated multi-worker session strategy. Provider availability/model access must be checked separately with your own credentials. Do not deploy the sample inventory as private production data.

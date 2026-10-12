@@ -1,6 +1,6 @@
-fastapi
-uvicorn
-httpx2
-google-genai
-python-dotenv
-streamlit
+fastapi==0.141.1
+uvicorn==0.53.0
+httpx2==2.13.1
+google-genai==2.29.0
+python-dotenv==1.2.4
+streamlit==1.65.0
